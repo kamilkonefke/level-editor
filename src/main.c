@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 
 #include "gfx.h"
+#include "editor.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -26,13 +27,16 @@ void update() {
 
 }
 
+const Color grid_color = {50, 50, 50, 255};
+const Color white = {255, 255, 255, 255};
+
 void render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderSetScale(renderer, 1.0, 1.0);
 
-    Color grid_color = {50, 50, 50, 255};
     draw_dot_grid(15.0, grid_color);
+    draw_line(0, 1, 300, 100, white);
 
     SDL_RenderPresent(renderer);
 }
@@ -41,7 +45,7 @@ int main(int argc, char** argv) {
     // Init
     SDL_Init(SDL_INIT_EVERYTHING);
     window = SDL_CreateWindow("level-editor", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_SOFTWARE);
+    renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_SOFTWARE | SDL_RENDERER_ACCELERATED);
 
     is_running = true;
     while(is_running) {

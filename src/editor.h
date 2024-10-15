@@ -1,14 +1,12 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-
 typedef struct {
-    int x1, x2;
-    int y1, y2;
+    int x1, y1;
+    int x2, y2;
 } Wall;
 
 typedef struct {
-    int x;
+    int TODO;
 } Sector;
 
 void editor_init();
